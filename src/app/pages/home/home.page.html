@@ -3,19 +3,22 @@
     <ion-title>
       Home
     </ion-title>
-    <ion-button color="danger" (ngSubmit)="logout()">
+    <ion-buttons slot="end">
+    <ion-button color="danger" (click)="logout()">
       Logout
     </ion-button>
+  </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Home Page</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+  <ion-card>
+    <ion-row>
+      <ion-col text-center>
+        Your are logged in as : {{userEmail}}
+      </ion-col>
+    </ion-row>
+  </ion-card>
   <div id="container">
     <ion-card>
     </ion-card>

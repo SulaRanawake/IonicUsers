@@ -1,5 +1,5 @@
 import { AuthenticationService } from './../../services/authentication.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -7,22 +7,38 @@ import { NavController } from '@ionic/angular';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit{
+
+  userEmail: string;
 
   constructor(
     private NavCtrl: NavController,
     private authService: AuthenticationService
   ) {}
 
-  logout() {
-    this.authService.logoutUser()
-    .then( res => {
-      console.log(res);
-    }, err => {
+  ngOnInit() {
+    this.authService.userDetails()
+    .subscribe( res => {
+      console.log("res", res);
+      if(res){
+        this.userEmail = res.email;
+      } else {
+        this.NavCtrl.navigateBack('');
+      }
+
+    } , err => {
       console.log(err.message);
     })
   }
 
-  
+  logout() {
+    this.authService.logoutUser()
+    .then( res => {
+      console.log(res);
+      this.NavCtrl.navigateBack('');
+    }, err => {
+      console.log(err.message);
+    })
+  }
 
 }
