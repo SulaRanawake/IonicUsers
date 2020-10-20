@@ -50,6 +50,7 @@ export class LoginPage implements OnInit {
       console.log(res);
       this.errorMessage = "";
       this.successMessage = "You have successfully logged in.";
+      this.NavCtrl.navigateForward('/home');
     }, err => {
       console.log(err);
       this.errorMessage = err.message;
@@ -58,7 +59,7 @@ export class LoginPage implements OnInit {
   }
 
   gotoSignup() {
-    this.NavCtrl.navigateForward('/home');
+    this.NavCtrl.navigateForward('/signup');
   }
 
 }
