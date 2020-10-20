@@ -11,12 +11,12 @@
       <ion-card>
         <form class="form" [formGroup]="validations_form" (ngSubmit)="tryLogin(validations_form.value)" >
         <ion-item>
-          <ion-label>User Name</ion-label>
-          <ion-input></ion-input>
+          <ion-label position="floating" color="primary" >Email</ion-label>
+          <ion-input type="text" formControlName="email"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>Password</ion-label>
-          <ion-input type="password"></ion-input>
+          <ion-label position="floating" color="primary">Password</ion-label>
+          <ion-input type="password" formControlName="password" class="form-control" required ></ion-input>
         </ion-item>
         <ion-item>
           <ion-button color="success" type="submit">
