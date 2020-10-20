@@ -1,6 +1,7 @@
 import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,7 @@ import { NavController } from '@ionic/angular';
 export class HomePage implements OnInit{
 
   userEmail: string;
+  users : Observable<any>;
 
   constructor(
     private NavCtrl: NavController,
@@ -25,10 +27,17 @@ export class HomePage implements OnInit{
       } else {
         this.NavCtrl.navigateBack('');
       }
-
     } , err => {
       console.log(err.message);
+    });
+
+    this.authService.userList().subscribe( res => {
+      this.users = res;
+      console.log("users", res);
+    }, err => {
+      console.log(err.message);
     })
+
   }
 
   logout() {

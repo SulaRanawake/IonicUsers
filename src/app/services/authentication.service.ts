@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth} from '@angular/fire/auth';
-// import { rejects } from 'assert';
-// import { resolve } from 'dns';
+import { AngularFirestore} from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +9,18 @@ import { AngularFireAuth} from '@angular/fire/auth';
 export class AuthenticationService {
 
   constructor(
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private db: AngularFirestore
   ) { }
 
   signupUser(value){
     return new Promise<any>((resolve,reject) => {
-      this.afAuth.createUserWithEmailAndPassword(value.email, value.password).then(res => resolve(res), err=> reject(err))
+      this.afAuth.createUserWithEmailAndPassword(value.email, value.password).then(res => {
+        resolve(res);
+        this.db.collection("users").add({
+          userEmail : value.email
+        })
+      }, err=> reject(err))
     })
   }
 
@@ -44,7 +50,7 @@ export class AuthenticationService {
     return this.afAuth.user;
   }
 
-  userList(){
-
+  userList(): Observable<any> {
+    return this.db.collection<any>("users").valueChanges();
   }
 }
