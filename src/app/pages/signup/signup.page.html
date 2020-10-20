@@ -7,24 +7,24 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <!-- <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Signup Page</ion-title>
     </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
+  </ion-header> -->
+<form class="form" [formGroup]="validations_form" (ngSubmit)="trySignup(validations_form.value)" >
+  <!-- <div id="container"> -->
     <ion-card>
       <ion-item>
-        <ion-label>User Name</ion-label>
-        <ion-input></ion-input>
+        <ion-label position="floating" color="primary" >Email</ion-label>
+        <ion-input type="text" formControlName="email" ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Password</ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-label position="floating" color="primary">Password</ion-label>
+        <ion-input type="password" formControlName="password" class="form-control" required ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-button color="success">
+        <ion-button color="success" type="submit" (ngSubmit)="trySignup(value)" >
           Signup
         </ion-button>
       </ion-item>
@@ -34,5 +34,6 @@
         </ion-button>
       </ion-item>
   </ion-card>
-  </div>
+  <!-- </div> -->
+</form>
 </ion-content>
