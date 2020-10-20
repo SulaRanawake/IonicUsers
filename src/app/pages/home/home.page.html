@@ -19,6 +19,13 @@
       </ion-col>
     </ion-row>
   </ion-card>
+  <ion-card>
+    <ion-item *ngFor="let user of users">
+    <ion-row>
+      {{user.userEmail}}
+    </ion-row>
+  </ion-item>
+  </ion-card>
   <div id="container">
     <ion-card>
     </ion-card>
