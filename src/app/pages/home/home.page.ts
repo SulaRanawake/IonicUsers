@@ -1,4 +1,6 @@
+import { AuthenticationService } from './../../services/authentication.service';
 import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,20 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(
+    private NavCtrl: NavController,
+    private authService: AuthenticationService
+  ) {}
+
+  logout() {
+    this.authService.logoutUser()
+    .then( res => {
+      console.log(res);
+    }, err => {
+      console.log(err.message);
+    })
+  }
+
+  
 
 }
