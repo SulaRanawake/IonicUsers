@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth} from '@angular/fire/auth';
 import { AngularFirestore} from '@angular/fire/firestore';
-// import { rejects } from 'assert';
-// import { resolve } from 'dns';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -51,7 +50,7 @@ export class AuthenticationService {
     return this.afAuth.user;
   }
 
-  userList(){
-    return this.db.collection("users").get();
+  userList(): Observable<any> {
+    return this.db.collection<any>("users").valueChanges();
   }
 }
