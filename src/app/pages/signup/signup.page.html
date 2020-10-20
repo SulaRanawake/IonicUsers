@@ -24,12 +24,12 @@
         <ion-input type="password" formControlName="password" class="form-control" required ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-button color="success" type="submit" (ngSubmit)="trySignup(value)" >
+        <ion-button color="success" type="submit" >
           Signup
         </ion-button>
       </ion-item>
       <ion-item>
-        <ion-button color="light" [routerLink]="['/login']" >
+        <ion-button color="light" (click)="gotoLogin()" >
           Login
         </ion-button>
       </ion-item>
