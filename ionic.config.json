@@ -1,5 +1,7 @@
 {
   "name": "IonicUsers",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
